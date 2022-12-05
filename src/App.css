@@ -1,0 +1,12 @@
+.App {
+  text-align: center;
+}
+
+:root {
+  --blue: #508BC4;
+  --white: #ffffff;
+  --orange: #DF8445;
+  --green: #7DB059;
+  --black: #000000;
+  --pink: #AA336A;
+}
