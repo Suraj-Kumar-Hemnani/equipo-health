@@ -2,6 +2,8 @@ import axios from 'axios';
 import EButton from '../atoms/Button';
 import { useEffect, useState } from 'react';
 import Table from 'react-bootstrap/Table';
+import { useTable } from 'react-table';
+// https://react-table-v7.tanstack.com/docs/examples/basic
 
 
 type patient =  {
@@ -31,9 +33,8 @@ const PatientTable = ({status}: any) => {
     patients();
   }, []);
  
-  
-
   return (
+    <div className="table-responsive px-3">
     <Table striped>
       <thead>
         <tr>
@@ -48,22 +49,23 @@ const PatientTable = ({status}: any) => {
         </tr>
       </thead>
       <tbody>
-        {patients.filter((patient:patient) => status ==="All" || patient.status === status).map((patient: patient)=>{
+        {patients.filter((patient:patient) => status ==="All" || status ==="" || patient.status === status).map((patient: patient)=>{
           return(
             <tr>
               <td>{patient.name}</td>
               <td>{patient.age}</td>
               <td>{patient.cronicConditions}</td>
               <td>{patient.payor}</td>
-              <td>{patient.opportunities}</td>
+              <td style={{textAlign: 'center'}}>{patient.opportunities? '1':'0'}</td>
               <td>{patient.phone}</td>
               <td>{patient.lastVisit}</td>
-              <td><EButton variant='orange' title={patient.action[0]}></EButton></td>
+              <td><EButton variant='orange' title={"CarePlan"}></EButton></td>
             </tr>
           );
         })}        
       </tbody>
     </Table>
+    </div>
   );
 }
 

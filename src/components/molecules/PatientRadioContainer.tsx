@@ -13,7 +13,7 @@ export default function PatientRadioContainer({onChange}: PatientRadioProps) {
   }
 
   return(
-    <Container>
+    <Container fluid>
       <Row>
         <Col>  
           <div key={`inline-radio`} className="my-3">

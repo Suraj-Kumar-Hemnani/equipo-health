@@ -23,6 +23,7 @@ const ChartContainer = styled.div`
   box-shadow: 0px -4px 10px -6px #ececec;
   border: 1px solid #ececec;
   max-width: 180px;
+  margin: 15px 0;
 
   &:hover{
     box-shadow: 8px 9px 15px -7px #ececec;

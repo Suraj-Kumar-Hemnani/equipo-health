@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { IconType } from 'react-icons/lib';
+import { selectMenuStatus } from 'reducers/MenuStateSlice';
+import { useAppSelector } from 'store/hooks';
 import styled from 'styled-components';
 
 type MenuItemProps = {
@@ -10,11 +12,13 @@ type MenuItemProps = {
 }
 
 export default function MenuItem({children, title}: MenuItemProps) {
+  const menuStatus = useAppSelector(selectMenuStatus);
+  
   return(
-    <ItemText className='p-3'>
+    <ItemText className='px-3 py-2' title={title}>
       <>  
         <span style={{marginRight: '15px'}}>{children}</span>   
-        <span>{title}</span>
+        {menuStatus.status === 'opened' && <span>{title}</span>}
       </>
     </ItemText>
   )

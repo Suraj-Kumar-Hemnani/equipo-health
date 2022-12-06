@@ -4,17 +4,25 @@ import {GiHamburgerMenu} from 'react-icons/gi';
 import {AiOutlineMenuFold, AiOutlineMenuUnfold} from 'react-icons/ai';
 import MenuContext from 'context/MenuContext';
 import MenuStatus from 'context/MenuStatus';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { selectMenuStatus, open, close, MenuState } from 'reducers/MenuStateSlice';
 
+
+type MenuOpenerProps = {
+  
+}
 const MenuOpener = () => {
-  const[menuStatus, setMenuStatus] = useState("opened");
+    const menuStatus = useAppSelector(selectMenuStatus);
+    const dispatch = useAppDispatch();
 
-  const toggleMenu = (menuStatus: string)=>{
-    const menu = menuStatus === 'opened'? 'closed' : 'opened';
-    setMenuStatus(menu);
-    localStorage.setItem("menuOpened", menu);
+  const toggleMenu = ()=>{
+    menuStatus.status === 'closed'? dispatch(open()) : dispatch(close());
   }   
   return(
-    <Button variant="link" onClick = {() => {toggleMenu(menuStatus)}}><AiOutlineMenuFold size={32} color='#ffffff' opacity={0.7}/></Button>
+    <Button variant="link" onClick={() => toggleMenu()}>
+      {menuStatus.status === 'opened' && <AiOutlineMenuFold size={32} color='#ffffff' opacity={0.7}/>}
+      {menuStatus.status === 'closed' && <AiOutlineMenuUnfold size={32} color='#ffffff' opacity={0.7}/>}
+    </Button>
   );
 }
 

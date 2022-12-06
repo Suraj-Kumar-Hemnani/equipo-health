@@ -4,6 +4,8 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import LeftMenu from '../organisms/LeftMenu';
 import PageHeader from '../organisms/PageHeader';
+import { selectMenuStatus } from 'reducers/MenuStateSlice';
+import { useAppSelector } from 'store/hooks';
 
 type DefaultLayoutProps = {
    children?: React.ReactNode;
@@ -11,15 +13,19 @@ type DefaultLayoutProps = {
 }
 
 export default function DefaultLayout({children, pageTitle}: DefaultLayoutProps){
+
+  const menuStatus = useAppSelector(selectMenuStatus);  
+  const menuWidth = menuStatus.status==='opened'? '200px': '50px';
+
   return(
     <Container fluid>
       <Row>
-        <Col xs={8} md={2} style={{backgroundColor: 'var(--blue)', maxWidth:'200px'}}>
+        <Col xs={8} md={2} style={{position: 'fixed', backgroundColor: 'var(--blue)', maxWidth: menuWidth}}>
           <MenuContainer className='row'>
             <LeftMenu></LeftMenu>
           </MenuContainer>
         </Col>
-        <Col xs={12} md={10}>
+        <Col xs={12} style={{paddingLeft: menuWidth}}>
           <PageContainer>
             <PageHeader pageTitle={pageTitle}></PageHeader>
             {children}
@@ -35,9 +41,11 @@ const MenuContainer = styled.div`
   background-color: var(--blue);
   height: 100vh;
   align-content: start;
+  transition: all 0.35s ease-in;
 `;
 
 const PageContainer = styled.div`
   text-align: left;
+  padding-left: 15px;
 `;
 

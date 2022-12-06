@@ -10,6 +10,6 @@ type ButtonProps = {
 
 export default function EButton({title, children, variant}: ButtonProps){
   return(
-    <Button variant='primay' style={{margin: '0 4px', backgroundColor: variant && variant==='orange'? 'var(--orange)' : 'var(--blue)', color:'var(--white)'}}>{children && <span style={{marginRight: '10px'}}>{children}</span>}{title}</Button>
+    <Button variant='primay' style={{margin: '4px', backgroundColor: variant && variant==='orange'? 'var(--orange)' : 'var(--blue)', color:'var(--white)'}}>{children && <span style={{marginRight: '10px'}}>{children}</span>}{title}</Button>
   );
 }

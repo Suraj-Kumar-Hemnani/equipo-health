@@ -5,6 +5,11 @@ import {BsShieldShaded, BsFillPersonFill, BsReceiptCutoff, BsCardList, BsEnvelop
 import {BiFirstAid, BiBuilding} from "react-icons/bi";
 import {HiOutlineDocumentText} from "react-icons/hi";
 import {RiBriefcase4Fill} from "react-icons/ri";
+import { useEffect, useState } from "react";
+import MenuOpener from "components/atoms/MenuOpener";
+import { useAppSelector } from "store/hooks";
+import { selectMenuStatus } from "reducers/MenuStateSlice";
+import styled from "styled-components";
 
 type LeftMenuProps = {
 
@@ -12,9 +17,9 @@ type LeftMenuProps = {
 
 export default function LeftMenu(props: LeftMenuProps) {
   function handleMenuItemClick() {
-    throw new Error("Function not implemented.");
+    console.log("--");
   }
-
+  
   return(
     <>
      <LogoContainer></LogoContainer>
@@ -30,15 +35,35 @@ export default function LeftMenu(props: LeftMenuProps) {
       <MenuItem title="Programs" onClick={()=>handleMenuItemClick()}>
         <BiFirstAid></BiFirstAid>
       </MenuItem>
+      <MenuItem title="Reports" onClick={()=>handleMenuItemClick()}>
+        <HiOutlineDocumentText></HiOutlineDocumentText>
+      </MenuItem>
+      <Seperator />
       <MenuItem title="Patient" onClick={()=>handleMenuItemClick()}>
         <BsFillPersonFill></BsFillPersonFill>
       </MenuItem>
-      <MenuItem title="Patient" onClick={()=>handleMenuItemClick()}>
-        <BsFillPersonFill></BsFillPersonFill>
+      <Seperator />
+      <MenuItem title="Work Boards" onClick={()=>handleMenuItemClick()}>
+        <RiBriefcase4Fill></RiBriefcase4Fill>
       </MenuItem>
-      <MenuItem title="Patient" onClick={()=>handleMenuItemClick()}>
+      <MenuItem title="Order" onClick={()=>handleMenuItemClick()}>
         <BsReceiptCutoff></BsReceiptCutoff>
+      </MenuItem>
+      <MenuItem title="Appointment" onClick={()=>handleMenuItemClick()}>
+        <BsCardList></BsCardList>
+      </MenuItem>
+      <MenuItem title="InPatient" onClick={()=>handleMenuItemClick()}>
+        <BiBuilding></BiBuilding>
+      </MenuItem>
+      <Seperator />
+      <MenuItem title="Messages" onClick={()=>handleMenuItemClick()}>
+        <BsEnvelopeFill></BsEnvelopeFill>
       </MenuItem>
     </>
   );
 }
+
+const Seperator = styled.hr`
+  color: var(--white);
+  margin: 0;
+`;

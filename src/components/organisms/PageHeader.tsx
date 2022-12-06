@@ -27,4 +27,5 @@ export default function PageHeader({pageTitle}: PageHeaderProps) {
 
 const PageHeading = styled.h1`
   color: var(--pink);
+  font-size: 2rem;
 `;
