@@ -6,6 +6,7 @@ import LeftMenu from '../organisms/LeftMenu';
 import PageHeader from '../organisms/PageHeader';
 import { selectMenuStatus } from 'reducers/MenuStateSlice';
 import { useAppSelector } from 'store/hooks';
+import SearchBox from 'components/molecules/SearchBox';
 
 type DefaultLayoutProps = {
    children?: React.ReactNode;
@@ -27,6 +28,7 @@ export default function DefaultLayout({children, pageTitle}: DefaultLayoutProps)
         </Col>
         <Col xs={12} style={{paddingLeft: menuWidth}}>
           <PageContainer>
+            <SearchBox></SearchBox>
             <PageHeader pageTitle={pageTitle}></PageHeader>
             {children}
           </PageContainer>

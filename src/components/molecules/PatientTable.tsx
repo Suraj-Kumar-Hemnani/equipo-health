@@ -1,9 +1,10 @@
 import axios from 'axios';
 import EButton from '../atoms/Button';
-import { useEffect, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import Table from 'react-bootstrap/Table';
-import { useTable } from 'react-table';
-// https://react-table-v7.tanstack.com/docs/examples/basic
+import Pagination from './Paginator';
+import { Row, Col } from 'react-bootstrap';
+import CSVButton from './ExportCSV';
 
 
 type patient =  {
@@ -21,20 +22,50 @@ type patient =  {
   ]
 }
 
+let PageSize = 4;
+
+  
 const PatientTable = ({status}: any) => {
   const [patients, setPatients] = useState([]); 
+
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const currentTableData = useMemo(() => {
+    const firstPageIndex = (currentPage - 1) * PageSize;
+    const lastPageIndex = firstPageIndex + PageSize;
+    return patients.filter((patient:patient) => status ==="All" || status ==="" || patient.status === status).slice(firstPageIndex, lastPageIndex);
+  }, [currentPage, patients, status]);
+  
   useEffect(() =>{
     const patients = async ()=> {
       let res = await axios.get('./data/patientList.json');
-      console.log(await res.data.patients);
       setPatients(await res.data.patients);
       return await res.data.patients;
     } 
     patients();
-  }, []);
+  }, []); 
+
+  useEffect(()=>{
+    setCurrentPage(1); // We want pagination to come to page 1 whenever there is a change when the radio buttons are selected.
+  }, [status]);
  
   return (
     <div className="table-responsive px-3">
+
+      <Row>
+        <Col>
+            <CSVButton data={patients}></CSVButton>
+        </Col>
+        <Col>
+            <Pagination
+            className="pagination-bar"
+            currentPage={currentPage}
+            totalCount={patients.filter((patient:patient) => status ==="All" || status ==="" || patient.status === status).length}
+            pageSize={PageSize}
+            onPageChange={page => setCurrentPage(page)} siblingCount={0}
+            />
+        </Col>
+      </Row>      
     <Table striped>
       <thead>
         <tr>
@@ -49,7 +80,7 @@ const PatientTable = ({status}: any) => {
         </tr>
       </thead>
       <tbody>
-        {patients.filter((patient:patient) => status ==="All" || status ==="" || patient.status === status).map((patient: patient)=>{
+        {currentTableData.map((patient: patient)=>{
           return(
             <tr>
               <td>{patient.name}</td>
@@ -64,7 +95,7 @@ const PatientTable = ({status}: any) => {
           );
         })}        
       </tbody>
-    </Table>
+    </Table>    
     </div>
   );
 }

@@ -5,17 +5,9 @@ import {BsShieldShaded, BsFillPersonFill, BsReceiptCutoff, BsCardList, BsEnvelop
 import {BiFirstAid, BiBuilding} from "react-icons/bi";
 import {HiOutlineDocumentText} from "react-icons/hi";
 import {RiBriefcase4Fill} from "react-icons/ri";
-import { useEffect, useState } from "react";
-import MenuOpener from "components/atoms/MenuOpener";
-import { useAppSelector } from "store/hooks";
-import { selectMenuStatus } from "reducers/MenuStateSlice";
 import styled from "styled-components";
 
-type LeftMenuProps = {
-
-}
-
-export default function LeftMenu(props: LeftMenuProps) {
+export default function LeftMenu() {
   function handleMenuItemClick() {
     console.log("--");
   }

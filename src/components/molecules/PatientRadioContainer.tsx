@@ -1,4 +1,3 @@
-import { useState } from "react";
 import { Col, Container, Form, Row } from "react-bootstrap";
 
 
@@ -6,8 +5,6 @@ type PatientRadioProps = {
   onChange?: any
 }
 export default function PatientRadioContainer({onChange}: PatientRadioProps) {
-  const [status, setStatus] = useState('All');
-
   const handleStatusChange = (status: string) => {
     onChange(status);
   }

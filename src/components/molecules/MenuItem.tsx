@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { IconType } from 'react-icons/lib';
 import { selectMenuStatus } from 'reducers/MenuStateSlice';
 import { useAppSelector } from 'store/hooks';

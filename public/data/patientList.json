@@ -1,5 +1,5 @@
 {
-  "patients": [{"id":1,"name":"Adrien","age":28,"cronicConditions":"Alteration of Left Upper Leg, Open Approach","payor":"HEALTH FIRST","opportunities":true,"phone":"+86 892 754 1308","lastVisit":"2/3/2022","status":"Pending","action":[{},{},{}]},
+  "patients": [{"id":1,"name":"Adrien","age":28,"cronicConditions":"Alteration of Left Upper Leg, Open Approach","payor":"HEALTH FIRST","opportunities":true,"phone":"+86 892 754 1308","lastVisit":"2/3/2022","status":"Completed","action":[{},{},{}]},
 {"id":2,"name":"Pollyanna","age":7,"cronicConditions":"Insert of Infusion Dev into L Toe Phalanx Jt, Perc Approach","payor":"AFFINITY","opportunities":true,"phone":"+212 635 358 2212","lastVisit":"7/31/2022","status":"Pending","action":[{}]},
 {"id":3,"name":"Edith","age":7,"cronicConditions":"Destruction of Abdominal Sympathetic Nerve, Perc Approach","payor":"HEALTH FIRST","opportunities":true,"phone":"+63 561 480 9031","lastVisit":"5/9/2022","status":"Pending","action":[{},{},{}]},
 {"id":4,"name":"Barnaby","age":63,"cronicConditions":"HDR Brachytherapy of Spleen using Palladium 103","payor":"AFFINITY","opportunities":true,"phone":"+880 244 185 6355","lastVisit":"2/20/2022","status":"Pending","action":[{},{}]},
